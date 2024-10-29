@@ -20,7 +20,7 @@ void loop() {
         stopMotors(); // Stop de motoren als de knop niet is ingedrukt
     }
 }
-void MoterLinks(){
+void MotorLinks(){
   Snelheid = Snelheid25();
   digitalWrite(motor1pin2, LOW);
   digitalWrite(motor2pin2, LOW);
@@ -29,7 +29,7 @@ void MoterLinks(){
   analogWrite(motor2pin1, Snelheid);
 
 }
-void MoterRechts(){
+void MotorRechts(){
   digitalWrite(motor1pin2, HIGH);
   digitalWrite(motor2pin2, HIGH);
 
@@ -37,7 +37,7 @@ void MoterRechts(){
   digitalWrite(motor2pin1, LOW);
 
 }
-void MoterVooruit(){
+void MotorVooruit(){
   digitalWrite(motor1pin2, LOW);
   digitalWrite(motor2pin2, HIGH);
 
@@ -45,7 +45,7 @@ void MoterVooruit(){
   digitalWrite(motor2pin1, HIGH);
 
 }
-void MoterAchteruit(){
+void MotorAchteruit(){
   digitalWrite(motor1pin2, HIGH);
   digitalWrite(motor2pin2, LOW);
 
@@ -56,17 +56,17 @@ void MoterAchteruit(){
 int moveMotors() {
   // put your main code here, to run repeatedly:
   //achteruit
-  MoterAchteruit();
+  MotorAchteruit();
   delay(10000)
   //vooruit
-  MoterVooruit();
+  MotorVooruit();
   delay(10000)
   //rechts
-  MoterRechts();
+  MotorRechts();
   delay(10000)
   //links
 
-  MoterLinks();
+  MotorLinks();
   delay(10000)
   
 }
