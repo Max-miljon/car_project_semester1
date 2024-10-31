@@ -1,11 +1,12 @@
-int motor1pin1 = 6;       //pin init3 =pin D6
+int motor1pin1 = 6;        //pin init3 =pin D6
 int motor1pin2 = 11;       //pin init1 =pin D11
 int motor2pin1 = 10;       //pin init2 =pin D10
-int motor2pin2 = 9;       //pin init4 = pin D9
+int motor2pin2 = 9;        //pin init4 = pin D9
 int buttonPin = 20;        //button
-int Snelheid;
+int Speed = 0;
 void setup() {
   // put your setup code here, to run once:
+  Serial.begin(9600);
   pinMode(motor1pin1, OUTPUT);
   pinMode(motor1pin2, OUTPUT);
   pinMode(motor2pin1, OUTPUT);
@@ -14,77 +15,80 @@ void setup() {
 }
 void loop() {
     // Controleer of de knop is ingedrukt
+    
     if (digitalRead(buttonPin) == LOW) { // Knop ingedrukt
         moveMotors();
+        Serial.println(Speed);
     } else {
         stopMotors(); // Stop de motoren als de knop niet is ingedrukt
     }
 }
-void MotorLinks(){
-  Snelheid = Snelheid25();
+
+void MotorLeft(){
+  
   digitalWrite(motor1pin2, LOW);
   digitalWrite(motor2pin2, LOW);
 
-  analogWrite(motor1pin1, Snelheid);
-  analogWrite(motor2pin1, Snelheid);
+  analogWrite(motor1pin1, Speed);
+  analogWrite(motor2pin1, Speed);
 
 }
-void MotorRechts(){
-  digitalWrite(motor1pin2, HIGH);
-  digitalWrite(motor2pin2, HIGH);
+void MotorRight(){
+  analogWrite(motor1pin2, Speed);
+  analogWrite(motor2pin2, Speed);
 
   digitalWrite(motor1pin1, LOW);
   digitalWrite(motor2pin1, LOW);
 
 }
-void MotorVooruit(){
+void MotorForward(){
   digitalWrite(motor1pin2, LOW);
-  digitalWrite(motor2pin2, HIGH);
+  analogWrite(motor2pin2, Speed);
 
   digitalWrite(motor1pin1, LOW);
-  digitalWrite(motor2pin1, HIGH);
+  analogWrite(motor2pin1, Speed);
 
 }
-void MotorAchteruit(){
-  digitalWrite(motor1pin2, HIGH);
+void MotorBackward(){
+  analogWrite(motor1pin2, Speed);
   digitalWrite(motor2pin2, LOW);
 
-  digitalWrite(motor1pin1, HIGH);
+  analogWrite(motor1pin1, Speed);
   digitalWrite(motor2pin1, LOW);
 }
 
 int moveMotors() {
-  // put your main code here, to run repeatedly:
+  // put your code here, to run repeatedly:
   //achteruit
-  MotorAchteruit();
-  delay(10000)
+  MotorBackward();
+  delay(4000);
   //vooruit
-  MotorVooruit();
-  delay(10000)
+  MotorForward();
+  delay(4000);
   //rechts
-  MotorRechts();
-  delay(10000)
+  MotorRight();
+  delay(3000);
   //links
-
-  MotorLinks();
-  delay(10000)
+  MotorLeft();
+  delay(4000);
+  
   
 }
-int Snelheid25(){
-  Snelheid = 64;
-  return Snelheid;
+int Speed25(){
+  Speed = 70;
+  return Speed;
 }
-int Snelheid50(){
-  Snelheid = 128;
-  return Snelheid;
+int Speed50(){
+  Speed = 128;
+  return Speed;
 }
-int Snelheid75(){
-  Snelheid = 192;
-  return Snelheid;
+int Speed75(){
+  Speed = 192;
+  return Speed;
 }
-int Snelheid100(){
-  Snelheid = 255;
-  return Snelheid;
+int Speed100(){
+  Speed = 255;
+  return Speed;
   
 }
 void stopMotors() {
