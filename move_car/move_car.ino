@@ -75,7 +75,7 @@ int moveMotors() {
   
 }
 int Speed25(){
-  Speed = 64;
+  Speed = 70;
   return Speed;
 }
 int Speed50(){
