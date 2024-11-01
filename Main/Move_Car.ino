@@ -1,10 +1,10 @@
-#include "Move_Car.h"
-
-extern int motor1pin1;
-extern int motor1pin2;
-extern int motor2pin1;
-extern int motor2pin2;
-extern int Speed;
+#include "Move_car.h"
+// int motor1pin1 = 6;        //pin init3 =pin D6
+// int motor1pin2 = 11;       //pin init1 =pin D11
+// int motor2pin1 = 10;       //pin init2 =pin D10
+// int motor2pin2 = 9;        //pin init4 = pin D9
+// int buttonPin = 20;        //button
+// int Speed = 0;
 // void setup() {
 //   // put your setup code here, to run once:
 //   Serial.begin(9600);
@@ -58,6 +58,39 @@ void MotorBackward(){
   digitalWrite(motor2pin1, LOW);
 }
 
+int moveMotors() {
+  // put your code here, to run repeatedly:
+  //achteruit
+  MotorBackward();
+  delay(4000);
+  //vooruit
+  MotorForward();
+  delay(4000);
+  //rechts
+  MotorRight();
+  delay(3000);
+  //links
+  MotorLeft();
+  delay(4000);
+  
+}
+int Speed25(){
+  Speed = 70;
+  return Speed;
+}
+int Speed50(){
+  Speed = 128;
+  return Speed;
+}
+int Speed75(){
+  Speed = 192;
+  return Speed;
+}
+int Speed100(){
+  Speed = 255;
+  return Speed;
+  
+}
 void stopMotors() {
     digitalWrite(motor1pin1, LOW);
     digitalWrite(motor1pin2, LOW);
